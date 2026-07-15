@@ -1,0 +1,271 @@
+/* .navbar {
+    
+    width:100vh;
+       position:sticky;
+  top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* align-items: flex-start; */
+  /* background-color: #1e293b; */
+  /* padding: 15px 30px; */
+  /* color: white; */
+  /* border: lpx solid ; */
+ /* }  */
+
+/* .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #38bdf8;
+} */
+
+
+
+.navbar{
+    /* background-color: red; */
+    padding:5px;
+    /* margin:5px 10px; */
+}
+.custom-navbar{
+    background:#fff;
+    height:100%;
+    margin:10px;
+}
+
+.logo-dark{
+    font-size:30px;
+    font-weight:700;
+    color:#0F172A;
+}
+
+.logo-yellow{
+    font-size:30px;
+    font-weight:700;
+    color:#F5B301;
+}
+
+.navbar-nav .nav-link{
+
+    margin:0 18px;
+    color:#444;
+    font-weight:500;
+    transition:.3s;
+}
+
+.navbar-nav .nav-link:hover{
+
+    color:#F5B301;
+}
+
+.navbar-nav .active{
+
+    color:#F5B301 !important;
+    border-bottom:3px solid #F5B301;
+}
+
+
+
+
+/* .booking-btn:hover{
+
+    background:#083D92;
+} */
+
+.nav-buttons{
+    display:flex;
+    align-items:center; 
+      gap:15px;
+}
+
+.booking-btn {
+  /* width: 200%; */
+  margin: 20px;
+  padding: 5px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: linear-gradient(
+    to right,
+    #00ffb3,
+    #38bdf8
+  );
+
+  color: #000;
+
+  font-weight: bold;
+  font-size: 18px;
+
+  cursor: pointer;
+
+  box-shadow: 0 0 30px
+    rgba(0, 255, 179, 0.4);
+}
+.login-btn{
+
+    border:none;
+    background:#F5B301;
+    color:#111;
+    padding:10px 20px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+.logout-btn{
+
+    border:none;
+    background:#dc3545;
+    color:white;
+    padding:10px 20px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+.logout-btn:hover{
+
+    background:#b02a37;
+}
+
+/* ========================= */
+/* Desktop (993px and above) */
+/* ========================= */
+
+@media (min-width:993px){
+
+    
+    .custom-navbar{
+        height:80px;
+        padding:0 25px;
+    }
+
+    .navbar-nav{
+        gap:15px;
+    }
+
+    .booking-btn,
+    .login-btn,
+    .logout-btn{
+        padding:10px 22px;
+    }
+
+}
+
+/* ========================= */
+/* Tablet */
+/* ========================= */
+
+@media (max-width:992px){
+       .nav-buttons{
+        flex-direction:column;
+        width:100%;
+        align-items:stretch;
+    }
+
+    .custom-navbar{
+        height:auto;
+        padding:10px 0;
+    }
+
+    .navbar-brand{
+        font-size:22px;
+    }
+
+    .logo-dark,
+    .logo-yellow{
+        font-size:26px;
+    }
+    .navbar-collapse{
+        background:#fff;
+        margin-top:15px;
+        padding:20px;
+        border-radius:15px;
+        box-shadow:0 8px 20px rgba(0,0,0,.08);
+    }
+
+    .navbar-nav{
+        text-align:center;
+        margin-bottom:20px;
+    }
+
+    .navbar-nav .nav-link{
+        margin:12px 0;
+    }
+
+    .d-flex{
+        flex-direction:column;
+        width:100%;
+        gap:15px !important;
+    }
+
+    .booking-btn,
+    .login-btn,
+    .logout-btn{
+        width:100%;
+    }
+
+}
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media (max-width:768px){
+
+    .logo-dark,
+    .logo-yellow{
+        font-size:22px;
+    }
+
+    .navbar-brand svg{
+        font-size:24px !important;
+    }
+
+    .booking-btn,
+    .login-btn,
+    .logout-btn{
+        padding:5px;
+        font-size:15px;
+    }
+
+}
+
+/* ========================= */
+/* Small Mobile */
+/* ========================= */
+
+@media (max-width:480px){
+
+    .custom-navbar{
+        padding:8px 0;
+    }
+
+    .logo-dark,
+    .logo-yellow{
+        width:40px;
+        font-size:20px;
+    }
+
+    .navbar-toggler{
+        padding:4px 8px;
+    }
+
+    .navbar-collapse{
+        padding:15px;
+    }
+
+}

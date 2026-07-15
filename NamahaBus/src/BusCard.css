@@ -1,0 +1,30 @@
+.card {
+  width: 500px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.card h2 {
+  color: #333;
+}
+
+.details {
+  margin: 15px 0;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkblue;
+}

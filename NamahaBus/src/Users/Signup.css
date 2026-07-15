@@ -1,0 +1,9 @@
+.button{
+    height:2rem;
+    width:12rem;
+    background-color: aqua;
+    border: none;
+    border-radius:5rem;
+    margin:2rem;
+    border: 1 solid black;
+}

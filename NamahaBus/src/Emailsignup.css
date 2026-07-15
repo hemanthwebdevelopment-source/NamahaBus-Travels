@@ -1,0 +1,391 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+/* ===========================
+   PAGE
+=========================== */
+
+.signup-container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 20px;
+    background:#f5f7fb;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.signup-card{
+    width:100%;
+    max-width:450px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    border:1px solid #e5e7eb;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    animation:cardAnimation .7s ease;
+    transition:all .35s ease;
+}
+
+.signup-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+}
+
+.emailStyle{
+
+    margin: 10px 0 ;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.signup-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.signup-icon{
+    width:80px;
+    height:80px;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    background:#eef2ff;
+    color:#4f46e5;
+
+    transition:all .4s ease;
+}
+
+.signup-icon:hover{
+    transform:rotate(12deg) scale(1.08);
+    box-shadow:0 10px 25px rgba(79,70,229,.25);
+}
+
+.signup-header h2{
+    margin-top:20px;
+    color:#111827;
+    font-size:30px;
+
+    animation:fadeDown .8s ease;
+}
+
+.signup-header p{
+    margin-top:8px;
+    color:#6b7280;
+    font-size:15px;
+}
+
+/* ===========================
+   INPUT GROUP
+=========================== */
+
+.signup-input-group{
+    margin-bottom:22px;
+    animation:slideLeft .8s ease;
+}
+
+.signup-input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:15px;
+    font-weight:600;
+    color:#374151;
+}
+
+/* ===========================
+   INPUT BOX
+=========================== */
+
+.input-box{
+    display:flex;
+    align-items:center;
+    height:52px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    padding:0 15px;
+    background:#fff;
+    transition:all .35s ease;
+}
+
+.input-box:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.input-box:focus-within{
+    border-color:#4f46e5;
+    box-shadow:0 0 0 4px rgba(79,70,229,.15);
+    transform:scale(1.02);
+}
+
+.input-box svg{
+    color:#9ca3af;
+    margin-right:12px;
+    transition:.3s;
+}
+
+.input-box:focus-within svg{
+    color:#4f46e5;
+    transform:scale(1.15);
+}
+
+.input-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    background:transparent;
+    font-size:15px;
+    color:#111827;
+}
+
+.input-box input::placeholder{
+    color:#9ca3af;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:600;
+    color:#fff;
+    cursor:pointer;
+
+    transition:all .3s ease;
+}
+
+.btn-primary{
+    background:#4f46e5;
+}
+
+.btn-primary:hover{
+    background:#4338ca;
+}
+
+.btn-success{
+    background:#16a34a;
+}
+
+.btn-success:hover{
+    background:#15803d;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 22px rgba(0,0,0,.18);
+}
+
+.btn:active{
+    transform:scale(.97);
+}
+
+.btn:disabled{
+    opacity:.7;
+    cursor:not-allowed;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.signup-footer{
+    margin-top:22px;
+    text-align:center;
+    color:#6b7280;
+    font-size:14px;
+
+    animation:fadeIn 1s ease;
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+
+@keyframes cardAnimation{
+
+    from{
+        opacity:0;
+        transform:translateY(50px) scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+@keyframes slideLeft{
+
+    from{
+        opacity:0;
+        transform:translateX(-35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+@keyframes fadeDown{
+
+    from{
+        opacity:0;
+        transform:translateY(-25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width:768px){
+
+.signup-container{
+    padding:30px 20px;
+}
+
+.signup-card{
+    padding:30px;
+}
+
+.signup-header h2{
+    font-size:26px;
+}
+
+.signup-icon{
+    width:70px;
+    height:70px;
+}
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width:480px){
+
+.signup-container{
+    padding:20px 15px;
+}
+
+.signup-card{
+    padding:22px 18px;
+    border-radius:15px;
+}
+
+.signup-header h2{
+    font-size:22px;
+}
+
+.signup-header p{
+    font-size:14px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    font-size:14px;
+}
+
+.input-box{
+    height:48px;
+    padding:0 12px;
+}
+
+.input-box svg{
+    margin-right:10px;
+}
+
+.input-box input{
+    font-size:14px;
+}
+
+.btn{
+    padding:13px;
+    font-size:15px;
+}
+
+.signup-footer{
+    font-size:13px;
+}
+
+}
+
+/* ===========================
+   SMALL DEVICES
+=========================== */
+
+@media (max-width:320px){
+
+.signup-card{
+    padding:18px 15px;
+}
+
+.signup-header h2{
+    font-size:20px;
+}
+
+.signup-icon{
+    width:60px;
+    height:60px;
+}
+
+.input-box{
+    height:45px;
+}
+
+.btn{
+    padding:12px;
+    font-size:14px;
+}
+
+}

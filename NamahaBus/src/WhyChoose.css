@@ -1,0 +1,71 @@
+.why-section {
+  padding: 90px 0;
+  background: #ffffff;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-heading span {
+  color: #f5b301;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  font-size: 42px;
+  margin: 15px 0;
+  color: #1b1b1b;
+  font-weight: 700;
+}
+
+.section-heading p {
+  color: #666;
+  max-width: 650px;
+  margin: auto;
+  line-height: 1.8;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.why-card {
+  background: white;
+  border-radius: 18px;
+  padding: 35px;
+  transition: .3s;
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.why-card:hover {
+  transform: translateY(-10px);
+}
+
+.why-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #0d6efd;
+  color: white;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.why-card h4 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.why-card p {
+  color: #666;
+  line-height: 1.8;
+}

@@ -1,0 +1,715 @@
+.bookingpage-wrapper{
+     min-height: 100vh;
+        background: #f3f4f6;
+         padding: 30px;
+        font-family: sans-serif;
+}
+
+.bookingpage-container{
+    max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+}
+
+.bookingpage-left{
+      display: flex;
+      flex-direction: column;
+       gap: "20px";
+}
+
+.bookingpage-trip-card{
+      background: #fff;
+      border-radius: 18px;
+       overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+}
+
+.bookingpage-trip-body{
+     padding: 18px 22px;
+}
+
+.bookingpage-section-header{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    margin-bottom: 20px;
+}
+
+.bookingpage-section-title{
+      margin: 0;
+      font-size: 22px;
+}
+
+.bookingpage-route{
+     display:flex;
+     justify-content: space-between;
+     align-items: center;
+}
+
+.bookingpage-route-from{
+         display:flex;
+    flex-direction:column;
+}
+
+.bookingpage-route-city{
+    margin:0;
+    font-size:24px;
+    font-weight:700;
+    color:#111827;
+}
+
+.bookingpage-route-time{
+    margin-top:6px;
+    color:#555;
+    font-size:15px;
+}
+
+.bookingpage-route-center{
+    text-align:center;
+}
+
+.bookingpage-duration-wrapper{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.bookingpage-duration-line{
+    width:50px;
+    height:2px;
+    background:#ccc;
+}
+
+.bookingpage-duration-badge{
+    border:1px solid #ccc;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:14px;
+    color:#444;
+    white-space:nowrap;
+}
+
+.bookingpage-route-to{
+    text-align:right;
+}
+
+.bookingpage-bus-info{
+    background:#d1fae5;
+    padding:18px 22px;
+}
+
+.bookingpage-bus-name{
+    font-size:20px;
+    font-weight:700;
+    color:#065f46;
+    text-align: center;
+}
+
+.bookingpage-bus-type{
+    font-weight: 700;
+    margin-top:4px;
+    color:#065f46;
+    text-align: center;
+}
+
+.bookingpage-contact-card{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.bookingpage-contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.bookingpage-contact-item{
+    display:flex;
+    flex-direction:column;
+}
+
+.bookingpage-contact-label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.bookingpage-input{
+    width:100%;
+    border:none;
+    border-bottom:1px solid #ccc;
+    padding:10px 0;
+    outline:none;
+    font-size:16px;
+}
+
+.bookingpage-passenger-section{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Header */
+
+.bookingpage-section-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:8px;
+}
+
+.bookingpage-section-title{
+    margin:0;
+    font-size:22px;
+    font-weight:600;
+    color:#111827;
+}
+
+.bookingpage-section-description{
+    color:#666;
+    margin-bottom:25px;
+    font-size:20px;
+    text-align: center;
+}
+
+/* Passenger Cards */
+
+.bookingpage-passenger-wrapper{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.bookingpage-passenger-card{
+    position:relative;
+    width:280px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:15px;
+    background:#fff;
+}
+
+/* Remove Button */
+
+.bookingpage-remove-seat{
+    position:absolute;
+    top:10px;
+    right:12px;
+    font-size:22px;
+    font-weight:bold;
+    color:#6b7280;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.bookingpage-remove-seat:hover{
+    color:#ef4444;
+}
+
+/* Passenger Form */
+
+.bookingpage-passenger-form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+/* Seat Badge */
+
+.bookingpage-seat-badge{
+    background:#d1fae5;
+    color:#065f46;
+    padding:10px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-weight:600;
+}
+
+/* Inputs */
+
+.bookingpage-input{
+    width:100%;
+    border:none;
+    border-bottom:1px solid #ccc;
+    padding:10px 0;
+    outline:none;
+    font-size:16px;
+    background:transparent;
+}
+
+.bookingpage-input:focus{
+    border-bottom:2px solid #16a34a;
+}
+
+/* Gender */
+
+.bookingpage-gender-group{
+    display:flex;
+    border:1px solid #ccc;
+    border-radius:30px;
+    overflow:hidden;
+}
+
+.bookingpage-gender-btn{
+    flex:1;
+    padding:12px;
+    border:none;
+    background:#fff;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.bookingpage-gender-btn:hover{
+    background:#f3f4f6;
+}
+
+
+/* ===========================
+   Billing Card
+=========================== */
+
+.bookingpage-billing-card{
+    background:#fff;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+}
+
+.bookingpage-billing-content{
+    display:flex;
+    gap:16px;
+}
+
+.bookingpage-billing-icon{
+    flex-shrink:0;
+}
+
+.bookingpage-billing-details{
+    display:flex;
+    flex-direction:column;
+}
+
+.bookingpage-billing-title{
+    font-size:22px;
+    font-weight:700;
+    color:#111827;
+}
+
+.bookingpage-billing-subtitle{
+    margin-top:4px;
+    color:#666;
+}
+
+.bookingpage-billing-address{
+    margin-top:8px;
+    color:#444;
+    line-height:1.6;
+}
+
+.bookingpage-billing-edit{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#ef4444;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.bookingpage-billing-edit:hover{
+    color:#dc2626;
+}
+
+
+
+/*==========================
+RIGHT SIDE
+==========================*/
+
+.bookingpage-right{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.bookingpage-fare-card{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.bookingpage-fare-title{
+    margin:0 0 20px;
+    font-size:24px;
+    font-weight:700;
+}
+
+.bookingpage-fare-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    color:#444;
+}
+
+.bookingpage-fare-divider{
+    border:none;
+    border-top:1px solid #ddd;
+}
+
+.bookingpage-fare-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:25px;
+    font-size:28px;
+    font-weight:700;
+}
+
+.bookingpage-terms{
+    text-align:center;
+    color:#444;
+    line-height:1.6;
+}
+
+.bookingpage-terms-link{
+    color:#2563eb;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.bookingpage-terms-link:hover{
+    text-decoration:underline;
+}
+
+.bookingpage-pay-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:12px;
+    background:#d1fae5;
+    color:#065f46;
+    font-size:22px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.bookingpage-pay-btn:hover{
+    background:#bbf7d0;
+}
+
+.bookingpage-pay-btn-disabled{
+    background:gray;
+    color:#fff;
+    cursor:not-allowed;
+}
+
+.bookingpage-pay-btn-disabled:hover{
+    background:gray;
+}
+
+/* ==========================================
+   LARGE TABLETS (992px)
+========================================== */
+
+@media (max-width:992px){
+
+.bookingpage-wrapper{
+    padding:20px;
+}
+
+.bookingpage-container{
+    grid-template-columns:1fr;
+    gap:20px;
+}
+
+.bookingpage-right{
+    order:2;
+}
+
+.bookingpage-left{
+    order:1;
+}
+
+.bookingpage-contact-grid{
+    grid-template-columns:1fr;
+}
+
+.bookingpage-passenger-wrapper{
+    justify-content:center;
+}
+
+.bookingpage-passenger-card{
+    width:100%;
+    max-width:500px;
+}
+
+.bookingpage-billing-card{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.bookingpage-route{
+    gap:20px;
+}
+
+.bookingpage-fare-total{
+    font-size:24px;
+}
+
+.bookingpage-pay-btn{
+    font-size:20px;
+}
+
+}
+
+
+/* ==========================================
+   TABLETS (768px)
+========================================== */
+
+@media (max-width:1024px){
+
+.bookingpage-wrapper{
+    padding:15px;
+}
+
+.bookingpage-trip-body,
+.bookingpage-contact-card,
+.bookingpage-passenger-section,
+.bookingpage-fare-card,
+.bookingpage-billing-card{
+    padding:18px;
+}
+
+.bookingpage-route{
+    flex-direction:row;
+    align-items:center;
+    text-align:center;
+    gap:18px;
+}
+
+.bookingpage-route-from,
+.bookingpage-route-to{
+    text-align:center;
+}
+
+.bookingpage-duration-wrapper{
+    width:100%;
+    justify-content:center;
+}
+
+.bookingpage-duration-line{
+    flex:1;
+    max-width:90px;
+}
+
+.bookingpage-route-city{
+    font-size:22px;
+}
+
+.bookingpage-route-time{
+    font-size:14px;
+}
+
+.bookingpage-bus-name{
+    font-size:18px;
+}
+
+.bookingpage-bus-type{
+    font-size:15px;
+}
+
+.bookingpage-section-title{
+    font-size:20px;
+}
+
+.bookingpage-section-description{
+    font-size:15px;
+}
+
+.bookingpage-passenger-card{
+    max-width:100%;
+}
+
+.bookingpage-billing-content{
+    flex-direction:column;
+}
+
+.bookingpage-billing-title{
+    font-size:20px;
+}
+
+.bookingpage-fare-title{
+    font-size:22px;
+}
+
+.bookingpage-fare-total{
+    font-size:20px;
+}
+
+.bookingpage-pay-btn{
+    font-size:18px;
+    padding:16px;
+}
+
+}
+
+
+/* ==========================================
+   MOBILE (576px)
+========================================== */
+
+@media (max-width:776px){
+
+.bookingpage-wrapper{
+    padding:10px;
+}
+
+.bookingpage-trip-body,
+.bookingpage-contact-card,
+.bookingpage-passenger-section,
+.bookingpage-fare-card,
+.bookingpage-billing-card{
+    padding:15px;
+    border-radius:14px;
+}
+
+.bookingpage-section-header{
+    gap:8px;
+}
+
+.bookingpage-section-title{
+    font-size:18px;
+}
+
+.bookingpage-section-description{
+    font-size:14px;
+    margin-bottom:18px;
+}
+
+.bookingpage-route-city{
+    font-size:20px;
+}
+
+.bookingpage-route-time{
+    font-size:13px;
+}
+
+.bookingpage-duration-badge{
+    padding:5px 10px;
+    font-size:12px;
+}
+
+.bookingpage-contact-label{
+    font-size:14px;
+}
+
+.bookingpage-input{
+    font-size:14px;
+}
+
+.bookingpage-seat-badge{
+    font-size:14px;
+}
+
+.bookingpage-gender-btn{
+    padding:10px;
+    font-size:14px;
+}
+
+.bookingpage-billing-title{
+    font-size:18px;
+}
+
+.bookingpage-billing-subtitle,
+.bookingpage-billing-address{
+    font-size:14px;
+}
+
+.bookingpage-fare-title{
+    font-size:20px;
+}
+
+.bookingpage-fare-row{
+    font-size:14px;
+}
+
+.bookingpage-fare-total{
+    font-size:18px;
+}
+
+.bookingpage-terms{
+    font-size:13px;
+}
+
+.bookingpage-pay-btn{
+    font-size:16px;
+    padding:14px;
+}
+
+}
+
+
+/* ==========================================
+   SMALL MOBILE (480px)
+========================================== */
+
+@media (max-width:480px){
+
+.bookingpage-wrapper{
+    padding:8px;
+}
+
+.bookingpage-route-city{
+    font-size:18px;
+}
+
+.bookingpage-duration-badge{
+    font-size:11px;
+}
+
+.bookingpage-duration-line{
+    display:none;
+}
+
+.bookingpage-passenger-card{
+    padding:12px;
+}
+
+.bookingpage-seat-badge{
+    padding:8px;
+}
+
+.bookingpage-pay-btn{
+    font-size:15px;
+}
+
+}
+
+
+
+
+
+
+
+
+

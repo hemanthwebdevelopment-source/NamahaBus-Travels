@@ -1,0 +1,134 @@
+/* .body {
+  margin: 0;
+  height: 100vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  /* background-image: url(logo2.png); */
+
+
+/* .imagecontainer{
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  align-content: center;
+} */
+/* .backgroundimage{
+  /* background-image: url("slider-1.jpg"); */
+  /* background-size: cover;
+  background-position:30%; */ */
+  /* opacity:0.4   */
+  /* height: 100vh; */
+  /* background-attachment:fixed; */
+/* } */
+/* #bgopacity{
+  opacity:0.3;
+}
+.newlogo{
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+  border:none;
+  border-radius:50%;
+  width:100vh; */
+  /* float: center; */
+  /* opacity: 0.5; */
+  /* margin-right: auto;
+} */
+
+/* .container {
+  flex: 1;
+  margin:  0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar {
+  width: 250px;
+  background: #1e293b;
+  color: white;
+  padding: 20px;
+  height: 100vh;
+}
+
+.sidebar h2 {
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  cursor: pointer;
+  margin: 5px 0;
+  /* color:black; */
+  /* background: #334155;
+  border-radius: 5px;
+} */
+
+/* .sidebar ul li:hover {
+  background: #475569;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.section {
+  display: none;
+}
+
+.section h2 {
+  margin-bottom: 10px;
+}
+
+input, select {
+  padding: 8px;
+  margin: 5px;
+} */ */
+
+/* button {
+  padding: 8px 12px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+button:hover{
+  background-color: #15803d;
+}
+
+button:hover {
+  background: #1d4ed8;
+} */
+
+/* ul {
+  margin-top: 10px;
+}
+
+.a{
+  font-size:30px;
+  color:white;
+  text-decoration: none;
+  /* flex: 1; */
+  /* padding: 20px; */
+/* } */
+
+/* .center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%; /* Adjust as needed */
+/* } */
+
+#content-modify{
+  font-size:25px;
+ }  
