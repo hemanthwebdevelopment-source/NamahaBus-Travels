@@ -57,9 +57,9 @@ export default function UpdateBusDetails() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/AddBusDetails/update",
-        {id,formData},{
+      const res = await axios.put(
+        `http://localhost:3000/BusDetails/${id}`,
+        formData,{
   withCredentials: true,
 }
       );

@@ -70,7 +70,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Search.css";
-
+import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
@@ -128,16 +128,24 @@ export default function Search() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:3000/destination", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // const res = await fetch("http://localhost:3000/destination", {
+      //   method: "GET",
+      //   credentials: "include",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(formData),
+      // });
 
-      await res.json();
+      // await res.json();
+
+      const res = await axios.get("http://localhost:3000/destination",{
+            params: {
+        from,
+        to,
+        date,
+    },
+      })
 
       if (res.status === 200) {
         navigate("/searchlist", {

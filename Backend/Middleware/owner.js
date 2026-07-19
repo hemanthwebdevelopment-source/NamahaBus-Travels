@@ -6,7 +6,7 @@ function isOwner(req, res, next) {
             return res.status(401).send("You must login");
         }
 
-        const data = jwt.verify(req.cookies.token, "shhhhh");
+        const data = jwt.verify(req.cookies.token, " process.env.JWT_SECRET");
 
         console.log(data);
 

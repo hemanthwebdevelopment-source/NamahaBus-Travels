@@ -21,7 +21,7 @@ const isOwner = role === "admin";
       //  const {from,to,date} = location.state;
       //  console.log(location.state);
             useEffect(() => {
-              axios.post("http://localhost:3000/ownerBusInfo")
+              axios.get("http://localhost:3000/ownerBusInfo")
                 .then((res) => {
                    console.log(res.data);
    setbusesDetails(res.data.businfo);
@@ -34,8 +34,8 @@ const isOwner = role === "admin";
  const deletebus =  async (e,id) => {
     e.preventDefault();
     try{
-      const res = await axios.post(
-        "http://localhost:3000/BusDetailsdeletebus",{id});
+      const res = await axios.delete(
+        `http://localhost:3000/BusDetails/${id}`);
         alert(res.data);
          window.location.reload();
   } catch (err) {

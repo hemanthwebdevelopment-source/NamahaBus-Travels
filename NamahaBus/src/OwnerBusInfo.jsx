@@ -29,8 +29,8 @@ export default function OwnerBusInfo() {
   const deletebus =  async (e,id) => {
     e.preventDefault();
     try{
-      const res = await axios.post(
-        "http://localhost:3000/delete",{id});
+      const res = await axios.delete(
+        `http://localhost:3000/delete/${id}`);
         alert(res.data);
        window.location.reload();
   } catch (err) {

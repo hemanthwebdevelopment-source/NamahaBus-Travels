@@ -8,7 +8,7 @@ const search = require("./models/search");
 const Bus = require("./models/Bus");
 const BusDetails = require("./models/BusDetails");
 const nodemailer = require("nodemailer");
-const wrapasync = require("./Utils/Wrapasync");
+// const wrapasync = require("./Utils/Wrapasync");
 const session = require('express-session')
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
@@ -20,8 +20,8 @@ const verifyPayment = require("./Middleware/verifypayment");
 const isOwner = require("./Middleware/owner.js");
 // const verifyEmail = require("./Middleware/login");
 const ExpressError = require("./Utils/Express");
-const {BusSchema} = require("./Schema.js");
-const flash = require("connect-flash");
+// const {BusSchema} = require("./Schema.js");
+// const flash = require("connect-flash");
 const TicketBooked = require("./models/Tickets.js");
 const isLoggedIn = require("./Middleware/login.js");
 // const passport = require("passport");
@@ -29,8 +29,8 @@ const isLoggedIn = require("./Middleware/login.js");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "sakarayheman@gmail.com",
-    pass: "nneyxzcjmyfkgxjw",
+    user: process.env.SEND_MAIL,
+    pass: process.env.MAIL_PASSWORD,
   },
 });
 app.use(
@@ -50,7 +50,7 @@ app.use(
 //     }
 // }
 // app.use(session(sessionOptions));
-app.use(flash());
+// app.use(flash());
 app.use(cookieParser());
 // app.use((req,res,next)=>{
 //   res.locals.success = req.flash("success");
@@ -110,10 +110,10 @@ app.get("/",(req,res)=>{
 
 
 
-app.post("/destination",async(req,res)=>{
+app.get("/destination",async(req,res)=>{
   try{
     console.log(req.user);
-  let {from,to,date} = req.body;
+  let {from,to,date} = req.query;
   // console.log(req.body);
     // console.log(req.body);
     // let destiny = new search({from,to,date});
@@ -147,16 +147,17 @@ app.post("/destination",async(req,res)=>{
 //   res.json(bus);
 // });
 
-app.post("/update",async(req,res)=>{
+app.put("/update/:id",isOwner,async(req,res)=>{
   try{
- const { id,formData } = req.body;
+ const { id } = req.params;
+ const { formData } = req.body;
       // console.log(id);
     const bus = await Bus.findByIdAndUpdate(id,formData,
        {
         returnDocument: "after", // replaces deprecated new:true
       });
     //  req.flash("success","New bus added");
-    res.status(201).json({
+    res.status(200).json({
       success: true,
       bus,
       }
@@ -169,7 +170,7 @@ app.post("/update",async(req,res)=>{
       message: err.message,
     });
   }
-  
+
 })
 
 app.post("/addBus",isOwner,async (req, res) => {
@@ -219,9 +220,9 @@ app.post("/addBus",isOwner,async (req, res) => {
   }
 });
 
-app.post("/searchlist",async(req, res) => {
+app.get("/searchlist",async(req, res) => {
   // try {
-    let {from,to,date} = req.body;
+    let {from,to,date} = req.query;
     // console.log(req.body);
     // const buses = await Bus.find({from,to,date});
     const buses = await Bus.find({
@@ -253,10 +254,10 @@ app.post("/searchlist",async(req, res) => {
 //   }
 });
 
-app.post("/BusDetails",async(req, res) => {
+app.get("/BusDetails",async(req, res) => {
   try {
-    let {from,to,date} = req.body;
-    console.log(req.body);
+    let {from,to,date} = req.query;
+    console.log(req.query);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -349,16 +350,17 @@ res.status(200).json({
   }
 });
 
-app.post("/AddBusDetails/update",async(req,res)=>{
+app.put("/BusDetails/:id",isOwner,async(req,res)=>{
   try{
- const { id,formData } = req.body;
+ const { id } = req.params;
+ const { formData } = req.body;
       // console.log(id);
     const bus = await BusDetails.findByIdAndUpdate(id,formData,
        {
         returnDocument: "after", // replaces deprecated new:true
       });
     //  req.flash("success","New bus added");
-    res.status(201).json({
+    res.status(200).json({
       success: true,
       bus,
       }
@@ -373,7 +375,7 @@ app.post("/AddBusDetails/update",async(req,res)=>{
   }
 })
 
-app.post("/AddBusDetails",async(req,res)=>{
+app.post("/AddBusDetails",isOwner,async(req,res)=>{
      try {
     // console.log(req.body); // Check if data arrives
       // console.log(req.body);
@@ -401,9 +403,9 @@ app.post("/AddBusDetails",async(req,res)=>{
 //   console.log(req.body);
 // })
 
-app.post("/delete",async(req,res)=>{
+app.delete("/delete/:id",isOwner,async(req,res)=>{
   try{
-      const { id } = req.body;
+      const { id } = req.params;
       // console.log(id);
       await Bus.findByIdAndDelete(id);
       res.json({
@@ -418,9 +420,9 @@ app.post("/delete",async(req,res)=>{
   }
 })
 
-app.post("/BusDetailsdeletebus",async(req,res)=>{
+app.delete("/BusDetails/:id",isOwner,async(req,res)=>{
   try{
-      const { id } = req.body;
+      const { id } = req.params;
       // console.log(id);
       await BusDetails.findByIdAndDelete(id);
       res.json({
@@ -435,22 +437,6 @@ app.post("/BusDetailsdeletebus",async(req,res)=>{
   }
 })
 
-// app.get("/tickets", isLoggedIn, async (req, res) => {
-//   try {
-//     const tickets = await TicketBooked.find({
-//       userId: req.user.userid,
-//     }).populate("busId").sort({ bookedAt: -1 });
-
-//     res.json({
-//       success: true,
-//       tickets,
-//     });
-//   } catch (err) {
-//     res.status(500).json({
-//       success: false,
-//     });
-//   }
-// });
 app.get("/tickets", isLoggedIn, async (req, res) => {
   try {  
     let tickets;
@@ -489,7 +475,7 @@ app.get("/tickets", isLoggedIn, async (req, res) => {
   }
 });
 
-app.post("/owner/tickets", async (req, res) => {
+app.post("/owner/tickets",isOwner, async (req, res) => {
   try {
     const { serviceNo, journeyDate } = req.body;
 
@@ -645,7 +631,7 @@ if (!updatedBus) {
     }
       // send email
     await transporter.sendMail({
-      from: "sakarayheman@gmail.com",
+      from: process.env.SEND_MAIL,
       to: email,
       subject: "Ticket Sending",
       text: passengerDetails,
@@ -685,7 +671,7 @@ app.post("/payment",async(req,res)=>{
       key_id:process.env.RAZORPAY_KEY_ID,
       key_secret:process.env.RAZORPAY_SECRET
   });
-  const {amount,currency,receipt,email,passengers,seats} = req.body;
+  const {amount,currency,receipt,email} = req.body;
   // console.log(passengers);
 //   const passengerDetails = passengers.map((passenger,index) => {
 
@@ -706,12 +692,12 @@ const payment = await razorpay.orders.create({amount:amount*100,currency,receipt
   if(payment){
     console.log("i am runnning")
           // const { email,name,age } = req.body;
-  //   if (!email) {
-  //     return res.status(400).json({
-  //       success: false,
-  //       message: "Email required",
-  //     });
-  //   }
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Email required",
+      });
+    }
   //     // send email
   //   await transporter.sendMail({
   //     from: "sakarayheman@gmail.com",
@@ -728,22 +714,6 @@ const payment = await razorpay.orders.create({amount:amount*100,currency,receipt
 
 }
 })
-    // auto delete after 5 min
-    // res.status(200).json({
-    //   success: true,
-    //   message: "message sent successfully",
-    // });
-
-
-    // res.status(500).json({
-    //   success: false,
-    //   message: "Failed to send message",
-    // });
-
-  // if(!payment){
-  //   return res.status(500).send("Error");
-  // }
- 
 
 app.post("/send-otp", async (req, res) => {
   try {
@@ -766,7 +736,7 @@ app.post("/send-otp", async (req, res) => {
 
     // send email
     await transporter.sendMail({
-      from: "sakarayheman@gmail.com",
+      from: process.env.SEND_MAIL,
       to: email,
       subject: "OTP Verification",
 
@@ -790,49 +760,7 @@ app.post("/send-otp", async (req, res) => {
     });
   }
 });
-// app.post("/verify-otp", async(req, res) => {
-//   try {
-//     const { email, otp,username } = req.body;
-//     //  console.log(req.body);
-//      if (!otpStore[email]) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "OTP expired or not found",
-//       });
-//     }  
-//     if (otpStore[email] == otp) {
-//       delete otpStore[email];
-//       const user = new Users(req.body);
-//       console.log(user.id);
-//       if(user.id !== Users.find(user.id)){
-//         await user.save();
-//       }
-//       let token = jwt.sign({email,userid:user.id},"shhhhh");
-//       res.cookie("token",token,{httpOnly: true,
-//         sameSite: "lax" ,});
-//         console.log(token);
-//           //  console.log(req.cookies.token);
-//           //  console.log(req.cookies);
-//         //    res.send("registered");
-//         // res.redirect("./profile")
-//       return res.status(200).json({
-//         success: true,
-//         message: "OTP verified successfully",
-//       });
-//     }
-//     return res.status(400).json({
-//       success: false,
-//       message: "Invalid OTP",
-//     });
-//   } catch (error) {
-//     console.log(error);
 
-//     res.status(500).json({
-//       success: false,
-//       message: "Server error",
-//     });
-//   }
-// });
 app.post("/verify-otp", async (req, res) => {
   try {
     const { email, otp, username } = req.body;
@@ -862,7 +790,7 @@ app.post("/verify-otp", async (req, res) => {
     username,
     email,
     role:
-      email === OWNER
+      email === process.env.OWNER
         ? "admin"
         : "user",
   });
@@ -877,7 +805,7 @@ const token = jwt.sign(
     // username: user.username,
     role: user.role,
   },
-  "shhhhh"
+   process.env.JWT_SECRET
 );
 
     res.cookie("token", token, {
@@ -887,8 +815,6 @@ const token = jwt.sign(
        path: "/",
        maxAge: 24 * 60 * 60 * 1000,
     });
-// const myUser = {...user,role:"user"};
-// console.log(myUser)
     return res.status(200).json({
       success: true,
       message: "OTP verified successfully",
@@ -913,7 +839,7 @@ app.get("/check-auth", isLoggedIn, (req, res) => {
   });
 });
 
-app.post("/ownerBusInfo",async(req,res)=>{
+app.get("/ownerBusInfo",isOwner,async(req,res)=>{
   try{
    let businfo = await BusDetails.find();
   //  console.log(businfo);
@@ -923,7 +849,7 @@ app.post("/ownerBusInfo",async(req,res)=>{
     message: "No buses found",
   });
 }
-   res.status(201).json({
+   res.status(200).json({
       success: true,
       businfo,
     });
@@ -939,29 +865,16 @@ app.post("/ownerBusInfo",async(req,res)=>{
 app.post("/logout", (req, res) => {
   console.log("Before:", req.cookies);
 
-  if(req.cookies.token === undefined) res.send("You must login");
-else{
-  res.clearCookie("token", {
-    path: "/",
-  });
-}
+  if(req.cookies.token === undefined)  return res.status(401).json({
+        success:false,
+        message:"Login required"
+    });
+
+  res.clearCookie("token", {path: "/",});
   console.log("Logout route called");
 
   res.json({ success: true });
 });
-// app.all(/.*/,(req,res,next)=>{
-//     next(new ExpressError(404,"page not found"));
-// });
-// app.get("/signup",async(req,res)=>{
-//     let samplelisting = new Users({
-//         username:"deltas",
-//     email:"delta@gmail.com",
-//     age:21
-//     })
-//     await samplelisting.save();
-//     console.log("same was saved");
-//     res.send("successful testing");
-// })
 app.all(/.*/,(req,res,next)=>{
     next(new ExpressError(404,"page not found"));
 });

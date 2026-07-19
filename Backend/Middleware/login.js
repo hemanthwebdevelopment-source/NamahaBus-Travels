@@ -48,7 +48,7 @@ function isLoggedIn(req, res, next) {
     }
 
     try {
-        const data = jwt.verify(token, "shhhhh");
+        const data = jwt.verify(token,process.env.JWT_SECRET);
 
         req.user = data; // { email: ..., iat: ..., exp: ... }
 

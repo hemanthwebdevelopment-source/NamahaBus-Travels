@@ -38,7 +38,7 @@ function BusBooking() {
        const {from,to,date} = location.state; 
        console.log(location.state);
       useEffect(() => {
-        axios.post("http://localhost:3000/BusDetails",{from,to,date})
+        axios.get("http://localhost:3000/BusDetails",{params:{from,to,date}})
           .then((res) => {
             setBuses(res.data.busesDetails);
           })
@@ -76,7 +76,8 @@ function BusBooking() {
   );
 }
 console.log(buses);
-// const handleBusType = (type)=>{
+// const handleBusType = (type)=>
+  // {
 //     setFilter({...filter,busType:type});
 // }
 const handleBusType = (type) => {
@@ -219,7 +220,6 @@ const filteredBuses = [...buses]
         </div>
 </div>
         <hr />
-
         <h4>Bus Type</h4>
 
         <div className="booking-bus-types">
