@@ -1,7 +1,7 @@
 import "./BusDetails.css";
 import { useEffect, useState } from "react";
 import { useNavigate,useLocation } from "react-router-dom";
-import axios from "axios";
+import api from "./api";
 import {
   FaMapMarkerAlt,
   FaChair,
@@ -21,7 +21,8 @@ const isOwner = role === "admin";
       //  const {from,to,date} = location.state;
       //  console.log(location.state);
             useEffect(() => {
-              axios.get("http://localhost:3000/ownerBusInfo")
+              // axios.get("http://localhost:3000/ownerBusInfo")
+              api.get("/ownerBusInfo")
                 .then((res) => {
                    console.log(res.data);
    setbusesDetails(res.data.businfo);
@@ -34,8 +35,9 @@ const isOwner = role === "admin";
  const deletebus =  async (e,id) => {
     e.preventDefault();
     try{
-      const res = await axios.delete(
-        `http://localhost:3000/BusDetails/${id}`);
+      // const res = await axios.delete(
+      //   `http://localhost:3000/BusDetails/${id}`);
+      const res = await api.delete("/BusDetails/${id}");
         alert(res.data);
          window.location.reload();
   } catch (err) {

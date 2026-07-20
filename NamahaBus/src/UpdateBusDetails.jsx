@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "./api";
 import { useNavigate,useLocation } from "react-router-dom";
 import {
   Bus,
@@ -57,8 +57,8 @@ export default function UpdateBusDetails() {
     e.preventDefault();
 
     try {
-      const res = await axios.put(
-        `http://localhost:3000/BusDetails/${id}`,
+      // const res = await axios.put(`http://localhost:3000/BusDetails/${id}`,
+      const res = await api.put(`/BusDetails/${id}`,
         formData,{
   withCredentials: true,
 }

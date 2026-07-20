@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation,useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "./api";
 import { useEffect, useState } from "react";
 import "./BookingPage.css";
 import {
@@ -45,21 +45,24 @@ export default function BookingPage() {
             const currency = "INR";
             const receiptId= "qwsaq1";
            const payment = async () => {
-            const response = await fetch("http://localhost:3000/payment",{method:"POST",body:JSON.stringify({amount,currency,receipt:receiptId,email,passengers,seat}),headers:{"content-Type":"application/json"},});
-           const order =await response.json();
+            // const response = await fetch("http://localhost:3000/payment",{method:"POST",body:JSON.stringify({amount,currency,receipt:receiptId,email,passengers,seat}),headers:{"content-Type":"application/json"},});
+            const response = await api.post("/payment",{amount,currency,receipt:receiptId,email,passengers,seat})
+          //  const order =await response.json();
+          const order = await response.data;
            console.log(order);
            var options = {
     "key": "rzp_test_Su3ZKYE6AecTLI", // Enter the Key ID generated from the Dashboard
     amount:order.amount, // Amount is in currency subunits. 
     currency:order.currency,
-    "name": "Acme Corp", //your business name
-    "description": "Test Transaction",
+    "name": "NamahaBus", //your business name
+    "description": "Bus Ticket Booking",
     "image": "https://example.com/your_logo",
     "order_id": order.id, // This is a sample Order ID. Pass the `id` obtained in the response of Step 1
     "handler": async function (response){
         try {
-          await axios.post(
-          "http://localhost:3000/SeatSelection",
+          // await axios.post(
+          // "http://localhost:3000/SeatSelection",
+          await api.post("/SeatSelection",
           {
             bookedSeats: seats,
             email,passengers,seat,trip,totalprice,

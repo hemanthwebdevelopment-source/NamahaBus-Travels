@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import axios from "axios";
+import api from "./api";
 import { useNavigate,useLocation } from "react-router-dom";
 import {
   Bus,
@@ -45,8 +45,8 @@ const handleSubmit = async (e) => {
   e.preventDefault();
     try {
     console.log(formData);
-    const res = await axios.put(
-      `http://localhost:3000/update/${id}`,
+    // const res = await axios.put(`http://localhost:3000/update/${id}`,
+    const res = await api.put(`update/${id}`,
       formData,{
   withCredentials: true,
 }

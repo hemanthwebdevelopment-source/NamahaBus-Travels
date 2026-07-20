@@ -4414,7 +4414,7 @@ import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./SeatSelection.css";
-import axios from "axios";
+import api from "./api";
 const rows = 12;
 
 export default function SeatSelection() {
@@ -4565,8 +4565,9 @@ const BookedSeat = async () => {
 //   }
 // };
 useEffect(() => {
-  axios
-    .get(`http://localhost:3000/SeatSelection/${bus._id}`,{params: {
+  // axios.get(`http://localhost:3000/SeatSelection/${bus._id}`,
+     api.get(`SeatSelection/${bus._id}`,
+      {params: {
     journeyDate: bus.journeyDate,
   },})
     .then((res) => {

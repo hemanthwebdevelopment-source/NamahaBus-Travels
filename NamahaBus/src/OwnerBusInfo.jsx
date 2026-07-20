@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import "./OwnerBusinfo.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios"
+import api from "./api";
 import { Trash2, Pencil } from "lucide-react";
 export default function OwnerBusInfo() {
   
@@ -11,7 +11,8 @@ export default function OwnerBusInfo() {
   const navigate = useNavigate();
   const [bus,setBus] = useState([]);
       useEffect(() => {
-            axios.post("http://localhost:3000/ownerBusInfo")
+            // axios.post("http://localhost:3000/ownerBusInfo")
+            api.post("/ownerBusInfo")
               .then((res) => {
                 console.log(res.data.businfo)
                setBus(res.data.businfo);
@@ -29,8 +30,9 @@ export default function OwnerBusInfo() {
   const deletebus =  async (e,id) => {
     e.preventDefault();
     try{
-      const res = await axios.delete(
-        `http://localhost:3000/delete/${id}`);
+      // const res = await axios.delete(
+      //   `http://localhost:3000/delete/${id}`);
+      const res = await api.delete(`delete/${id}`);
         alert(res.data);
        window.location.reload();
   } catch (err) {

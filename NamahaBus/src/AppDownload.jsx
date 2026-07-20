@@ -1,4 +1,6 @@
 import "./AppDownload.css";
+import api from "./api";
+const res = await api.get("/destination");
 import {
   FaGooglePlay,
   FaApple,

@@ -9,7 +9,7 @@ import Collapse from '@mui/material/Collapse';
 import CheckIcon from '@mui/icons-material/Check';
 import "./BusBooking.css";
 import CloseIcon from '@mui/icons-material/Close'
-import axios from "axios";
+import api from "./api";
 import {
   FaBus,
   FaSnowflake,
@@ -38,7 +38,9 @@ function BusBooking() {
        const {from,to,date} = location.state; 
        console.log(location.state);
       useEffect(() => {
-        axios.get("http://localhost:3000/BusDetails",{params:{from,to,date}})
+        // axios.get("http://localhost:3000/BusDetails"
+        api.get("/BusDetails"
+          ,{params:{from,to,date}})
           .then((res) => {
             setBuses(res.data.busesDetails);
           })

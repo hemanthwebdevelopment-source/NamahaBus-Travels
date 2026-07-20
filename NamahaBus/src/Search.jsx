@@ -70,7 +70,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Search.css";
-import axios from "axios"
+import api from "./api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
@@ -139,7 +139,8 @@ export default function Search() {
 
       // await res.json();
 
-      const res = await axios.get("http://localhost:3000/destination",{
+      // const res = await axios.get("http://localhost:3000/destination",{
+      const res = await api.get("/destination",{
             params: {
         from,
         to,

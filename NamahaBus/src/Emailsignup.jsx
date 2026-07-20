@@ -273,7 +273,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "./api";
 import { Mail, User, ShieldCheck } from "lucide-react";
 import "./Emailsignup.css";
 
@@ -297,8 +297,9 @@ export default function EmailSignup({ setUser }) {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        "http://localhost:3000/send-otp",
+      // const res = await axios.post(
+      //   "http://localhost:3000/send-otp",
+      const res = await api.post("/send-otp",
         {
           username,
           email,
@@ -325,8 +326,9 @@ export default function EmailSignup({ setUser }) {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        "http://localhost:3000/verify-otp",
+      // const res = await axios.post(
+      //   "http://localhost:3000/verify-otp",
+      const res = await api.post("/verify-otp",
         {
           username,
           email,

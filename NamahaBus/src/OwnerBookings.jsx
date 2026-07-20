@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "./api";
 
 function OwnerBookings() {
   const [tickets, setTickets] = useState([]);
@@ -14,8 +14,9 @@ function OwnerBookings() {
 
   const searchTickets = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:3000/owner/tickets",
+      // const res = await axios.post(
+      //   "http://localhost:3000/owner/tickets",
+      const res = await api.post("/owner/tickets",
         {
           serviceNo,
           journeyDate,

@@ -3,7 +3,7 @@ import Signup from "./Users/Signup.jsx";
 import "./Navbar.css";
 import { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "./api";
 import Login from "./Users/Login.jsx";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,10 +26,11 @@ const logout = async (e) => {
   localStorage.removeItem("email");
   // (null);
 
-  await axios.post(
-    "http://localhost:3000/logout",
+  // await axios.post(
+  //   "http://localhost:3000/logout",
+ await api.post("/logout",
     {},
-    { withCredentials: true }
+    // { withCredentials: true }
   ) .then((res) => {
      console.log(res.data);
       window.location.reload();

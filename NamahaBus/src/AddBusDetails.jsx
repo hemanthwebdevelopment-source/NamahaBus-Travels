@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "./api"; 
+const res = await api.get("/destination");
 import { useNavigate,useLocation } from "react-router-dom";
 import {
   Bus,
@@ -58,8 +59,9 @@ const days = [
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/AddBusDetails", {
+      // const res = await axios.post(
+      //   "http://localhost:3000/AddBusDetails", {
+      const res = await api.post("/AddBusDetails",{
     // busId: bus._id,
     ...formData,
   }
