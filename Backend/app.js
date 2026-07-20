@@ -33,12 +33,41 @@ const transporter = nodemailer.createTransport({
     pass: process.env.MAIL_PASSWORD,
   },
 });
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//     credentials: true
+//   })
+// );
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    credentials: true
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
   })
 );
+
+//with this code it will run locally and deployment also
+
+// const allowedOrigins = [
+//   "http://localhost:5173",
+//   process.env.FRONTEND_URL,
+// ];
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true,
+//   })
+// );
+
+
 // const sessionOptions = {
 //    secret: 'keyboard cat',
 //   resave: false,
