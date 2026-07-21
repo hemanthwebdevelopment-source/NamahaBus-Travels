@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import api from "./api";
 import './App.css'
 // import Navbar from './Navbar'
 import Image from './Image'
@@ -33,16 +34,18 @@ function App() {
 //   baseURL: import.meta.env.VITE_API_URL
 // })
  useEffect(() => {
-    axios
-      .get("http://localhost:3000")
+    //  axios
+    //   .get("http://localhost:3000")
+    api.get("/")
       .then((res) => console.log(res.data))
       .catch((err) => console.error(err)
   );
   }, []);
    const [user, setUser] = useState(localStorage.getItem("role"));
    useEffect(() => {
-  axios
-    .get("http://localhost:3000/check-auth", {
+  // axios
+  //   .get("http://localhost:3000/check-auth", {
+  api.get("/check-auth",{
       withCredentials: true,
     })
     .then((res) => {
