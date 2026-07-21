@@ -294,6 +294,8 @@ export default function EmailSignup({ setUser }) {
       return;
     }
 
+    console.log(api.defaults.baseURL);
+
     try {
       setLoading(true);
 
