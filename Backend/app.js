@@ -88,6 +88,12 @@ app.use(cookieParser());
 // console.log(Date.now() + 7 *24 *60*60*1000);
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
+
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.originalUrl}`);
+  next();
+});
+
 // let url = "https://localhost:3000";
 const MONGO_URL = process.env.MONGO_URL;
 main()
