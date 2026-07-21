@@ -747,7 +747,8 @@ const payment = await razorpay.orders.create({amount:amount*100,currency,receipt
 app.post("/send-otp", async (req, res) => {
   try {
     const { email } = req.body;
-      // console.log(req.body);
+    console.log("send-otp route hit");
+      console.log(req.body);
     if (!email) {
       return res.status(400).json({
         success: false,
