@@ -751,55 +751,55 @@ const payment = await razorpay.orders.create({amount:amount*100,currency,receipt
 })
 
 app.post("/send-otp", async (req, res) => {
-   console.log("Route hit");
+  //  console.log("Route hit");
 
-    return res.json({
-        success:true
+  //   return res.json({
+  //       success:true
+  //   });
+  try {
+    const { email } = req.body;
+    console.log("send-otp route hit");
+      console.log(req.body);
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Email required",
+      });
+    }
+
+    // generate 6 digit otp
+    const otp = Math.floor(
+      100000 + Math.random() * 900000
+    );
+
+    // store otp
+    otpStore[email] = otp;
+
+    // send email
+    await transporter.sendMail({
+      from: process.env.SEND_MAIL,
+      to: email,
+      subject: "OTP Verification",
+
+      text: `Your OTP is ${otp}`,
     });
-  // try {
-  //   const { email } = req.body;
-  //   console.log("send-otp route hit");
-  //     console.log(req.body);
-  //   if (!email) {
-  //     return res.status(400).json({
-  //       success: false,
-  //       message: "Email required",
-  //     });
-  //   }
 
-  //   // generate 6 digit otp
-  //   const otp = Math.floor(
-  //     100000 + Math.random() * 900000
-  //   );
+    // auto delete after 5 min
+    setTimeout(() => {
+      delete otpStore[email];
+    }, 5 * 60 * 1000);
 
-  //   // store otp
-  //   otpStore[email] = otp;
-
-  //   // send email
-  //   await transporter.sendMail({
-  //     from: process.env.SEND_MAIL,
-  //     to: email,
-  //     subject: "OTP Verification",
-
-  //     text: `Your OTP is ${otp}`,
-  //   });
-
-  //   // auto delete after 5 min
-  //   setTimeout(() => {
-  //     delete otpStore[email];
-  //   }, 5 * 60 * 1000);
-
-  //   res.status(200).json({
-  //     success: true,
-  //     message: "OTP sent successfully",
-  //   });
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(500).json({
-  //     success: false,
-  //     message: "Failed to send OTP",
-  //   });
-  // }
+    res.status(200).json({
+      success: true,
+      message: "OTP sent successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to send OTP",
+    });
+  }
 });
 
 app.post("/verify-otp", async (req, res) => {
