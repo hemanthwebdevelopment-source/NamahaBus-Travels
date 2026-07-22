@@ -141,11 +141,11 @@ export default function Search() {
 
       // const res = await axios.get("http://localhost:3000/destination",{
       const res = await api.get("/destination",{
-            params: {
-        from,
-        to,
-        date,
-    },
+           params: {
+  from: formData.from,
+  to: formData.to,
+  date: formData.date,
+}
       })
 
       if (res.status === 200) {
