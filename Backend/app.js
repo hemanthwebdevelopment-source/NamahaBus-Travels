@@ -756,6 +756,7 @@ app.post("/send-otp", async (req, res) => {
   //   return res.json({
   //       success:true
   //   });
+   console.log("NEW SEND OTP ROUTE");
   try {
     const { email } = req.body;
     console.log("send-otp route hit");
