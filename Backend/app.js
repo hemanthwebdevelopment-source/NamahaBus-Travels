@@ -835,14 +835,24 @@ app.post("/send-otp", async (req, res) => {
       success: true,
       message: "OTP sent successfully",
     });
-  } catch (err) {
-    console.error("SEND OTP ERROR:", err);
+  // } catch (err) {
+  //   console.error("SEND OTP ERROR:", err);
 
-    return res.status(500).json({
-      success: false,
-      message: err.message,
-    });
-  }
+  //   return res.status(500).json({
+  //     success: false,
+  //     message: err.message,
+  //   });
+  // }
+   } catch (err) {
+  console.error("SEND OTP ERROR");
+  console.error(err);
+  console.error(err.stack);
+
+  return res.status(500).json({
+    success: false,
+    message: err.message,
+  });
+}
 });
 
 app.post("/verify-otp", async (req, res) => {
