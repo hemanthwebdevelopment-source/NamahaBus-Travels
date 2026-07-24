@@ -307,7 +307,9 @@ export default function EmailSignup({ setUser }) {
           email,
         }
       );
-
+        console.log("Full Response:", res);
+console.log("Response Data:", res.data);
+console.log("Message:", res.data.message);
       alert(res.data.message);
       setOtpSent(true);
     } catch (error) {

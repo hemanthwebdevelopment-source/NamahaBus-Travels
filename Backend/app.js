@@ -780,7 +780,6 @@ app.post("/send-otp", async (req, res) => {
       from: process.env.SEND_MAIL,
       to: email,
       subject: "OTP Verification",
-
       text: `Your OTP is ${otp}`,
     });
 
