@@ -33,6 +33,13 @@ const transporter = nodemailer.createTransport({
     pass: process.env.MAIL_PASSWORD,
   },
 });
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("Transporter Error:", error);
+  } else {
+    console.log("Transporter is ready");
+  }
+});
 // app.use(
 //   cors({
 //     origin: "http://localhost:5173",
@@ -750,33 +757,71 @@ const payment = await razorpay.orders.create({amount:amount*100,currency,receipt
 }
 })
 
-app.post("/send-otp", async (req, res) => {
+// app.post("/send-otp", async (req, res) => {
   //  console.log("Route hit");
 
   //   return res.json({
   //       success:true
   //   });
-   console.log("NEW SEND OTP ROUTE");
+//    console.log("NEW SEND OTP ROUTE");
+//   try {
+//     const { email } = req.body;
+//     console.log("send-otp route hit");
+//       console.log(req.body);
+//     if (!email) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Email required",
+//       });
+//     }
+
+//     // generate 6 digit otp
+//     const otp = Math.floor(
+//       100000 + Math.random() * 900000
+//     );
+
+//     // store otp
+//     otpStore[email] = otp;
+
+//     // send email
+//     await transporter.sendMail({
+//       from: process.env.SEND_MAIL,
+//       to: email,
+//       subject: "OTP Verification",
+//       text: `Your OTP is ${otp}`,
+//     });
+
+//     // auto delete after 5 min
+//     setTimeout(() => {
+//       delete otpStore[email];
+//     }, 5 * 60 * 1000);
+
+//     res.status(200).json({
+//       success: true,
+//       message: "OTP sent successfully",
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({
+//       success: false,
+//       message: "Failed to send OTP",
+//     });
+//   }
+// });
+
+app.post("/send-otp", async (req, res) => {
   try {
     const { email } = req.body;
-    console.log("send-otp route hit");
-      console.log(req.body);
-    if (!email) {
-      return res.status(400).json({
-        success: false,
-        message: "Email required",
-      });
-    }
 
-    // generate 6 digit otp
-    const otp = Math.floor(
-      100000 + Math.random() * 900000
-    );
+    console.log("Email:", email);
 
-    // store otp
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    console.log("OTP:", otp);
+
     otpStore[email] = otp;
 
-    // send email
+    console.log("Before sendMail");
+
     await transporter.sendMail({
       from: process.env.SEND_MAIL,
       to: email,
@@ -784,20 +829,18 @@ app.post("/send-otp", async (req, res) => {
       text: `Your OTP is ${otp}`,
     });
 
-    // auto delete after 5 min
-    setTimeout(() => {
-      delete otpStore[email];
-    }, 5 * 60 * 1000);
+    console.log("After sendMail");
 
-    res.status(200).json({
+    return res.json({
       success: true,
       message: "OTP sent successfully",
     });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
+  } catch (err) {
+    console.error("SEND OTP ERROR:", err);
+
+    return res.status(500).json({
       success: false,
-      message: "Failed to send OTP",
+      message: err.message,
     });
   }
 });
