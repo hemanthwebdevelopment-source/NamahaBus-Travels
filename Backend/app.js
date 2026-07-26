@@ -769,71 +769,33 @@ const payment = await razorpay.orders.create({amount:amount*100,currency,receipt
 }
 })
 
-// app.post("/send-otp", async (req, res) => {
-  //  console.log("Route hit");
-
-  //   return res.json({
-  //       success:true
-  //   });
-//    console.log("NEW SEND OTP ROUTE");
-//   try {
-//     const { email } = req.body;
-//     console.log("send-otp route hit");
-//       console.log(req.body);
-//     if (!email) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "Email required",
-//       });
-//     }
-
-//     // generate 6 digit otp
-//     const otp = Math.floor(
-//       100000 + Math.random() * 900000
-//     );
-
-//     // store otp
-//     otpStore[email] = otp;
-
-//     // send email
-//     await transporter.sendMail({
-//       from: process.env.SEND_MAIL,
-//       to: email,
-//       subject: "OTP Verification",
-//       text: `Your OTP is ${otp}`,
-//     });
-
-//     // auto delete after 5 min
-//     setTimeout(() => {
-//       delete otpStore[email];
-//     }, 5 * 60 * 1000);
-
-//     res.status(200).json({
-//       success: true,
-//       message: "OTP sent successfully",
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({
-//       success: false,
-//       message: "Failed to send OTP",
-//     });
-//   }
-// });
-
 app.post("/send-otp", async (req, res) => {
+   console.log("Route hit");
+
+    return res.json({
+        success:true
+    });
+   console.log("NEW SEND OTP ROUTE");
   try {
     const { email } = req.body;
+    console.log("send-otp route hit");
+      console.log(req.body);
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Email required",
+      });
+    }
 
-    console.log("Email:", email);
+    // generate 6 digit otp
+    const otp = Math.floor(
+      100000 + Math.random() * 900000
+    );
 
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    console.log("OTP:", otp);
-
+    // store otp
     otpStore[email] = otp;
 
-    console.log("Before sendMail");
-
+    // send email
     await transporter.sendMail({
       from: process.env.SEND_MAIL,
       to: email,
@@ -841,12 +803,50 @@ app.post("/send-otp", async (req, res) => {
       text: `Your OTP is ${otp}`,
     });
 
-    console.log("After sendMail");
+    // auto delete after 5 min
+    setTimeout(() => {
+      delete otpStore[email];
+    }, 5 * 60 * 1000);
 
-    return res.json({
+    res.status(200).json({
       success: true,
       message: "OTP sent successfully",
     });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to send OTP",
+    });
+  }
+});
+
+// app.post("/send-otp", async (req, res) => {
+//   try {
+//     const { email } = req.body;
+
+//     console.log("Email:", email);
+
+//     const otp = Math.floor(100000 + Math.random() * 900000);
+//     console.log("OTP:", otp);
+
+//     otpStore[email] = otp;
+
+//     console.log("Before sendMail");
+
+//     await transporter.sendMail({
+//       from: process.env.SEND_MAIL,
+//       to: email,
+//       subject: "OTP Verification",
+//       text: `Your OTP is ${otp}`,
+//     });
+
+//     console.log("After sendMail");
+
+//     return res.json({
+//       success: true,
+//       message: "OTP sent successfully",
+//     });
   // } catch (err) {
   //   console.error("SEND OTP ERROR:", err);
 
@@ -855,17 +855,17 @@ app.post("/send-otp", async (req, res) => {
   //     message: err.message,
   //   });
   // }
-   } catch (err) {
-  console.error("SEND OTP ERROR");
-  console.error(err);
-  console.error(err.stack);
+//    } catch (err) {
+//   console.error("SEND OTP ERROR");
+//   console.error(err);
+//   console.error(err.stack);
 
-  return res.status(500).json({
-    success: false,
-    message: err.message,
-  });
-}
-});
+//   return res.status(500).json({
+//     success: false,
+//     message: err.message,
+//   });
+// }
+// });
 
 app.post("/verify-otp", async (req, res) => {
   try {
