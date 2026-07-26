@@ -35,15 +35,21 @@ const isLoggedIn = require("./Middleware/login.js");
 //     pass: process.env.MAIL_PASSWORD,
 //   },
 // });
+
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
-  secure: false, // must be false for port 587
+  secure: false,
+  family: 4, // Force IPv4
   auth: {
     user: process.env.SEND_MAIL,
     pass: process.env.MAIL_PASSWORD,
   },
+  connectionTimeout: 30000,
+  greetingTimeout: 30000,
+  socketTimeout: 30000,
 });
+
 // const transporter = nodemailer.createTransport({
 //   host: "smtp.gmail.com",
 //   port: 465,
