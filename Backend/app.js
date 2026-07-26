@@ -7,6 +7,8 @@ const userRoute = require("./routers/user")
 const search = require("./models/search");
 const Bus = require("./models/Bus");
 const BusDetails = require("./models/BusDetails");
+const dns = require("dns");
+dns.setDefaultResultOrder("ipv4first");
 const nodemailer = require("nodemailer");
 // const wrapasync = require("./Utils/Wrapasync");
 const session = require('express-session')
@@ -133,6 +135,14 @@ async function main(){
 };
 app.get("/",(req,res)=>{
     res.send("hello");
+});
+app.get("/dns-test", (req, res) => {
+  dns.lookup("smtp.gmail.com", { all: true }, (err, addresses) => {
+    if (err) {
+      return res.json(err);
+    }
+    res.json(addresses);
+  });
 });
 // app.use("/signup",userRoute);
 // app.post("/signup",async(req,res)=>{
