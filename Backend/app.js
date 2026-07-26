@@ -26,25 +26,25 @@ const TicketBooked = require("./models/Tickets.js");
 const isLoggedIn = require("./Middleware/login.js");
 // const passport = require("passport");
 // nodemailer transporter
-// const transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   auth: {
-//     user: process.env.SEND_MAIL,
-//     pass: process.env.MAIL_PASSWORD,
-//   },
-// });
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
+  service: "gmail",
   auth: {
     user: process.env.SEND_MAIL,
     pass: process.env.MAIL_PASSWORD,
   },
 });
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 465,
+//   secure: true,
+//   connectionTimeout: 10000,
+//   greetingTimeout: 10000,
+//   socketTimeout: 10000,
+//   auth: {
+//     user: process.env.SEND_MAIL,
+//     pass: process.env.MAIL_PASSWORD,
+//   },
+// });
 transporter.verify((error, success) => {
   if (error) {
     console.error("Transporter Error:", error);
@@ -770,12 +770,12 @@ const payment = await razorpay.orders.create({amount:amount*100,currency,receipt
 })
 
 app.post("/send-otp", async (req, res) => {
-   console.log("Route hit");
+  //  console.log("Route hit");
 
-    return res.json({
-        success:true
-    });
-   console.log("NEW SEND OTP ROUTE");
+  //   return res.json({
+  //       success:true
+  //   });
+  //  console.log("NEW SEND OTP ROUTE");
   try {
     const { email } = req.body;
     console.log("send-otp route hit");
