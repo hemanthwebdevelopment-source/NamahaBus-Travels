@@ -795,6 +795,12 @@ app.post("/send-otp", async (req, res) => {
     // store otp
     otpStore[email] = otp;
 
+   console.log("SEND_MAIL:", process.env.SEND_MAIL);
+   console.log(
+  "MAIL_PASSWORD exists:",
+  !!process.env.MAIL_PASSWORD
+);
+
     // send email
     await transporter.sendMail({
       from: process.env.SEND_MAIL,
