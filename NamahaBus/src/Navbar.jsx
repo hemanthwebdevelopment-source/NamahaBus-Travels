@@ -23,18 +23,27 @@ export default function Navbar({ user, setUser }) {
 
 const logout = async (e) => {
   e.preventDefault();
-  localStorage.removeItem("email");
+  // localStorage.removeItem("email");
   // (null);
 
   // await axios.post(
   //   "http://localhost:3000/logout",
- await api.post("/logout",
-    {},
-    // { withCredentials: true }
-  ) .then((res) => {
-     console.log(res.data);
-      window.location.reload();
-   })
+  try{
+ await api.post("/logout") 
+//  .then((res) => {
+//      console.log(res.data);
+//       window.location.reload();
+//    })
+
+    localStorage.removeItem("email");
+    localStorage.removeItem("role");
+
+    setUser(null);
+
+    navigate("/");
+  } catch (err) {
+    console.log(err);
+  }
 
 };
 

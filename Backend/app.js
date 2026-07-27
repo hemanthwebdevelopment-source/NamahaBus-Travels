@@ -1037,7 +1037,13 @@ app.post("/logout", (req, res) => {
         message:"Login required"
     });
 
-  res.clearCookie("token", {path: "/",});
+  // res.clearCookie("token", {path: "/",});
+    res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    path: "/",
+  });
   console.log("Logout route called");
 
   res.json({ success: true });
