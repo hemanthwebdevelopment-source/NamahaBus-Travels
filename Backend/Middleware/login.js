@@ -36,6 +36,7 @@
 
 // module.exports = verifyEmail;
 
+const jwt = require("jsonwebtoken");
 function isLoggedIn(req, res, next) {
     const token = req.cookies.token;
    console.log("Token",token);
@@ -54,7 +55,7 @@ function isLoggedIn(req, res, next) {
 
         next();
     } catch (err) {
-        console.log("JWT VERIFY ERROR:", err);
+         console.log("JWT VERIFY ERROR:", err);
         return res.status(401).json({
             success: false,
             message: "Invalid or expired token"
