@@ -974,7 +974,7 @@ const token = jwt.sign(
   },
    process.env.JWT_SECRET
 );
-
+      console.log("Generated Token:", token);
     res.cookie("token", token, {
         httpOnly: true,
        secure: true,

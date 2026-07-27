@@ -49,11 +49,12 @@ function isLoggedIn(req, res, next) {
 
     try {
         const data = jwt.verify(token,process.env.JWT_SECRET);
-
+         console.log("Verified User:", data);   
         req.user = data; // { email: ..., iat: ..., exp: ... }
 
         next();
     } catch (err) {
+        console.log("JWT VERIFY ERROR:", err);
         return res.status(401).json({
             success: false,
             message: "Invalid or expired token"
