@@ -858,7 +858,7 @@ app.post("/send-otp", async (req, res) => {
     // send email
     await transporter.sendMail({
       // from: process.env.SEND_MAIL,
-      from: '"NamahaBus" <sakarayheman@gmail.com>',
+      from: '"NamahaBus" <hemanthwebdevelopment@gmail.com>',
       to: email,
       subject: "OTP Verification",
       text: `Your OTP is ${otp}`,
