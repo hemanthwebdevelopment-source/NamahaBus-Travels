@@ -170,6 +170,7 @@ async function main(){
 };
 app.get("/",(req,res)=>{
     res.send("hello");
+    console.log("FRONTEND_URL =", process.env.FRONTEND_URL);
 });
 app.get("/dns-test", (req, res) => {
   dns.lookup("smtp.gmail.com", { all: true }, (err, addresses) => {
