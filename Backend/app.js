@@ -36,18 +36,28 @@ const isLoggedIn = require("./Middleware/login.js");
 //   },
 // });
 
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 587,
+//   secure: false,
+//   family: 4, // Force IPv4
+//   auth: {
+//     user: process.env.SEND_MAIL,
+//     pass: process.env.MAIL_PASSWORD,
+//   },
+//   connectionTimeout: 30000,
+//   greetingTimeout: 30000,
+//   socketTimeout: 30000,
+// });
+
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: "smtp-relay.brevo.com",
   port: 587,
-  secure: false,
-  family: 4, // Force IPv4
+  secure: false, // false for port 587
   auth: {
-    user: process.env.SEND_MAIL,
-    pass: process.env.MAIL_PASSWORD,
+    user: process.env.BREVO_USER,
+    pass: process.env.BREVO_PASS,
   },
-  connectionTimeout: 30000,
-  greetingTimeout: 30000,
-  socketTimeout: 30000,
 });
 
 // const transporter = nodemailer.createTransport({
@@ -62,11 +72,18 @@ const transporter = nodemailer.createTransport({
 //     pass: process.env.MAIL_PASSWORD,
 //   },
 // });
+// transporter.verify((error, success) => {
+//   if (error) {
+//     console.error("Transporter Error:", error);
+//   } else {
+//     console.log("Transporter is ready");
+//   }
+// });
 transporter.verify((error, success) => {
   if (error) {
-    console.error("Transporter Error:", error);
+    console.error("Brevo Error:", error);
   } else {
-    console.log("Transporter is ready");
+    console.log("✅ Brevo SMTP Connected");
   }
 });
 // app.use(
@@ -828,7 +845,8 @@ app.post("/send-otp", async (req, res) => {
 
     // send email
     await transporter.sendMail({
-      from: process.env.SEND_MAIL,
+      // from: process.env.SEND_MAIL,
+      from: '"NamahaBus" <sakarayheman@gmail.com>',
       to: email,
       subject: "OTP Verification",
       text: `Your OTP is ${otp}`,
