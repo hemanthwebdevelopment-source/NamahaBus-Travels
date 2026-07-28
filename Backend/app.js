@@ -71,7 +71,6 @@ const transporter = nodemailer.createTransport({
   greetingTimeout: 30000,
   socketTimeout: 30000,
 });
-
 // const transporter = nodemailer.createTransport({
 //   host: "smtp.gmail.com",
 //   port: 465,
@@ -170,7 +169,6 @@ async function main(){
 };
 app.get("/",(req,res)=>{
     res.send("hello");
-    console.log("FRONTEND_URL =", process.env.FRONTEND_URL);
 });
 app.get("/dns-test", (req, res) => {
   dns.lookup("smtp.gmail.com", { all: true }, (err, addresses) => {
@@ -974,7 +972,7 @@ const token = jwt.sign(
   },
    process.env.JWT_SECRET
 );
-      console.log("Generated Token:", token);
+    console.log("Generated Token:", token);
     res.cookie("token", token, {
         httpOnly: true,
        secure: true,
@@ -1037,13 +1035,7 @@ app.post("/logout", (req, res) => {
         message:"Login required"
     });
 
-  // res.clearCookie("token", {path: "/",});
-    res.clearCookie("token", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "none",
-    path: "/",
-  });
+  res.clearCookie("token", {path: "/",});
   console.log("Logout route called");
 
   res.json({ success: true });
